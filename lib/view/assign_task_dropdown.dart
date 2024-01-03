@@ -1,9 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class AssignTaskDropdown extends StatefulWidget {
+  AssignTaskDropdown({super.key, required this.onSubmit});
+
+  final StringCallback onSubmit;
   @override
   State<AssignTaskDropdown> createState() => _AssignTaskDropdownState();
 }
+
+typedef StringCallback = void Function(String);
 
 class _AssignTaskDropdownState extends State<AssignTaskDropdown> {
   List<String> assignList = <String>['Emp 1', 'Emp 2', 'Emp 3', 'Emp 4'];
@@ -13,17 +20,18 @@ class _AssignTaskDropdownState extends State<AssignTaskDropdown> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('Assign task'),
-        SizedBox(
+        const Text('Assign task'),
+        const SizedBox(
           width: 15,
         ),
         DropdownMenu<String>(
           initialSelection: assignList.first,
           onSelected: (String? value) {
-            // This is called when the user selects an item.
             setState(() {
               dropdownValue = value!;
+              widget.onSubmit(value);
             });
+            log(dropdownValue.toString());
           },
           dropdownMenuEntries:
               assignList.map<DropdownMenuEntry<String>>((String value) {

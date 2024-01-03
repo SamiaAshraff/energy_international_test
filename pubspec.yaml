@@ -37,6 +37,7 @@ dependencies:
   flutter_bloc: ^7.2.0
   freezed_annotation: ^2.4.1
   get_it: ^7.2.0
+  http: ^1.1.0
   injectable: ^1.5.0
   json_annotation: ^4.8.1
 
